@@ -1,0 +1,15 @@
+import { Award } from 'lucide-react'
+
+export function Achievements() {
+  return (
+    <div className="flex w-full flex-col gap-10 rounded-xl border border-neutral-200 bg-white p-6">
+      <h2 className="text-xl font-medium">Achievements</h2>
+
+      <div className="flex flex-col items-center gap-2 opacity-45">
+        <Award className="text-primary" size={32} />
+
+        <span className="text-sm text-neutral-600">No achievements</span>
+      </div>
+    </div>
+  )
+}

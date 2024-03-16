@@ -1,0 +1,2 @@
+src/shared/components/ui/*.tsx
+tailwind.config.ts
