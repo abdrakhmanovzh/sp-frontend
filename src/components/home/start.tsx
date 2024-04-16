@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 
 export function Start() {
   return (
@@ -12,7 +13,9 @@ export function Start() {
           </p>
         </div>
 
-        <Button className="h-20 rounded-full px-6 text-xl">Start learning</Button>
+        <Button className="h-20 rounded-full px-6 text-xl" asChild>
+          <Link href="/login">Start learning</Link>
+        </Button>
       </div>
     </section>
   )
