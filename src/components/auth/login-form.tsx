@@ -72,6 +72,7 @@ export function LoginForm() {
                       <SelectContent>
                         <SelectItem value="students">Student</SelectItem>
                         <SelectItem value="teachers">Teacher</SelectItem>
+                        <SelectItem value="ed_center">Edu. center</SelectItem>
                       </SelectContent>
                     </Select>
                   </FormItem>
@@ -112,37 +113,6 @@ export function LoginForm() {
               control={form.control}
               name="password"
             />
-
-            {/* <FormField
-              render={({ field }) => (
-                <FormItem className="flex flex-col gap-3">
-                  <FormLabel>Role</FormLabel>
-                  <FormControl className="ml-2">
-                    <RadioGroup
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                      className="flex gap-12"
-                    >
-                      <FormItem className="flex items-center space-x-3 space-y-0">
-                        <FormControl>
-                          <RadioGroupItem value="students" />
-                        </FormControl>
-                        <FormLabel className="font-normal">Student</FormLabel>
-                      </FormItem>
-                      <FormItem className="flex items-center space-x-3 space-y-0">
-                        <FormControl>
-                          <RadioGroupItem value="teachers" />
-                        </FormControl>
-                        <FormLabel className="font-normal">Teacher</FormLabel>
-                      </FormItem>
-                    </RadioGroup>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-              control={form.control}
-              name="role"
-            /> */}
 
             <Button disabled={form.formState.isSubmitting} className="mt-2" type="submit">
               Continue

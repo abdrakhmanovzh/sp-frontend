@@ -96,4 +96,21 @@
     @apply relative z-[2] m-[1px] h-[calc(100%_-_2px)] w-[calc(100%_-_2px)] bg-background;
     border-radius: inherit;
   }
+
+  table,
+  thead,
+  tbody,
+  tr,
+  th,
+  td {
+    @apply rounded-md;
+  }
+}
+
+.fc .fc-daygrid-day.fc-day-today {
+  @apply !bg-primary/60 !text-foreground;
+}
+
+.fc-button-primary {
+  @apply !bg-primary/60 !text-foreground;
 }

@@ -9,12 +9,13 @@ import {
   Breadcrumb
 } from '@/components/ui/breadcrumb'
 import { usePathname } from 'next/navigation'
+import { Fragment } from 'react'
 import Link from 'next/link'
 
 export function HeaderBreadcrumb() {
   const pathname = usePathname()
 
-  const formattedPathname = pathname.replace('/', '')
+  const segments = pathname.split('/').filter((item) => item !== '')
 
   return (
     <Breadcrumb>
@@ -24,14 +25,26 @@ export function HeaderBreadcrumb() {
             <Link href="/dashboard">Dashboard</Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
-        {pathname !== '/dashboard' && (
-          <>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage className="capitalize">{formattedPathname}</BreadcrumbPage>
-            </BreadcrumbItem>
-          </>
-        )}
+        {segments.map((segment, index) => (
+          <Fragment key={index}>
+            {segment !== 'dashboard' && (
+              <>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  {index === segments.length - 1 ? (
+                    <BreadcrumbLink asChild>
+                      <Link className="capitalize" href={`/${segment}`}>
+                        {segment}
+                      </Link>
+                    </BreadcrumbLink>
+                  ) : (
+                    <BreadcrumbPage className="capitalize">{segment}</BreadcrumbPage>
+                  )}
+                </BreadcrumbItem>
+              </>
+            )}
+          </Fragment>
+        ))}
       </BreadcrumbList>
     </Breadcrumb>
   )

@@ -1,12 +1,12 @@
-import { TeacherCard } from '@/components/teacher/teacher-card'
+import { TeachersFilterForm } from '@/components/teacher/teachers-filter-form'
 import { getAllTeachers } from '@/lib/teachers/queries'
+import { getAllSubjects } from '@/lib/auth/queries'
 
 export default async function Page() {
   const teachers = await getAllTeachers()
+  const subjects = await getAllSubjects()
 
   return (
-    <div className="flex flex-1 flex-col gap-4 px-6">
-      {teachers?.map((teacher) => <TeacherCard teacher={teacher} key={teacher.id} />)}
-    </div>
+    <>{teachers && subjects && <TeachersFilterForm subjects={subjects} teachers={teachers} />}</>
   )
 }

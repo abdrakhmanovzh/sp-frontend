@@ -12,6 +12,7 @@ import { StudentRegisterFormType, studentRegisterSchema } from '@/models/auth/re
 import { PopoverContent, PopoverTrigger, Popover } from '@/components/ui/popover'
 import { CardContent, CardHeader, CardTitle, Card } from '@/components/ui/card'
 import { ErrorAlert } from '@/components/ui/error-alert'
+import { PhoneInput } from '@/components/ui/phone-input'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Calendar } from '@/components/ui/calendar'
 import { Divider } from '@/components/ui/divider'
@@ -31,7 +32,6 @@ export function RegisterFormStudent() {
   const form = useForm<StudentRegisterFormType>({
     defaultValues: {
       birthdate: undefined,
-      confirm_password: '',
       password: '',
       surname: '',
       phone: '',
@@ -70,35 +70,7 @@ export function RegisterFormStudent() {
       <CardContent>
         <Form {...form}>
           <form className="flex flex-col gap-6 md:gap-4" onSubmit={form.handleSubmit(onSubmit)}>
-            <FormField
-              render={({ field }) => (
-                <FormItem className="w-full">
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input type="text" {...field} placeholder="email@example.com" />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-              control={form.control}
-              name="email"
-            />
-
             <div className="flex flex-1 flex-col gap-4 md:flex-row lg:gap-10">
-              <FormField
-                render={({ field }) => (
-                  <FormItem className="w-full">
-                    <FormLabel>Last Name</FormLabel>
-                    <FormControl>
-                      <Input type="text" {...field} placeholder="Gosling" />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-                control={form.control}
-                name="surname"
-              />
-
               <FormField
                 render={({ field }) => (
                   <FormItem className="w-full">
@@ -112,6 +84,20 @@ export function RegisterFormStudent() {
                 control={form.control}
                 name="name"
               />
+
+              <FormField
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormLabel>Last Name</FormLabel>
+                    <FormControl>
+                      <Input type="text" {...field} placeholder="Gosling" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+                control={form.control}
+                name="surname"
+              />
             </div>
 
             <div className="flex flex-1 flex-col gap-4 md:flex-row lg:gap-10">
@@ -120,7 +106,12 @@ export function RegisterFormStudent() {
                   <FormItem className="w-full">
                     <FormLabel>Phone number</FormLabel>
                     <FormControl>
-                      <Input type="text" {...field} placeholder="+7 777 777 77 77" maxLength={12} />
+                      <PhoneInput
+                        {...field}
+                        placeholder="+7 777 777 77 77"
+                        defaultCountry="KZ"
+                        maxLength={15}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -170,6 +161,20 @@ export function RegisterFormStudent() {
               <FormField
                 render={({ field }) => (
                   <FormItem className="w-full">
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input type="text" {...field} placeholder="email@example.com" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+                control={form.control}
+                name="email"
+              />
+
+              <FormField
+                render={({ field }) => (
+                  <FormItem className="w-full">
                     <FormLabel>Password</FormLabel>
                     <FormControl>
                       <Input type="password" {...field} placeholder="enter password" />
@@ -179,20 +184,6 @@ export function RegisterFormStudent() {
                 )}
                 control={form.control}
                 name="password"
-              />
-
-              <FormField
-                render={({ field }) => (
-                  <FormItem className="w-full">
-                    <FormLabel>Confirm password</FormLabel>
-                    <FormControl>
-                      <Input type="password" {...field} placeholder="repeat password" />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-                name="confirm_password"
-                control={form.control}
               />
             </div>
 
@@ -207,12 +198,18 @@ export function RegisterFormStudent() {
         </Form>
 
         <Divider text="or" />
-        <div className="flex gap-4">
-          <Button variant={'secondary'} className="w-full" asChild>
-            <Link href="/register/teacher">Sign Up as a Teacher</Link>
-          </Button>
+        <div className="flex flex-col gap-4">
+          <div className="flex gap-4">
+            <Button variant={'secondary'} className="w-full" asChild>
+              <Link href="/register/teacher">Sign Up as a Teacher</Link>
+            </Button>
 
-          <Button variant={'secondary'} className="w-full" asChild>
+            <Button variant={'secondary'} className="w-full" asChild>
+              <Link href="/register/edu">Sign Up as Education Center</Link>
+            </Button>
+          </div>
+
+          <Button variant={'outline'} className="w-full" asChild>
             <Link href="/login">Sign In</Link>
           </Button>
         </div>

@@ -1,4 +1,12 @@
-import { MessageCircle, UsersRound, BookCheck, PieChart, User } from 'lucide-react'
+import {
+  MessageCircle,
+  CalendarDays,
+  UsersRound,
+  BookCheck,
+  Newspaper,
+  PieChart,
+  User
+} from 'lucide-react'
 
 export const baseURL = 'http://localhost:8080'
 
@@ -7,6 +15,8 @@ export const authEndpoint = `${baseURL}/api/v1/auth`
 export const teacherEndpoint = `${baseURL}/api/teachers`
 
 export const studentEndpoint = `${baseURL}/api/students`
+
+export const subjectsEndpoint = `${baseURL}/api/subjects`
 
 export const studentLinks = [
   {
@@ -25,6 +35,16 @@ export const studentLinks = [
     to: '/messages'
   },
   {
+    icon: CalendarDays,
+    label: 'Schedule',
+    to: '/schedule'
+  },
+  {
+    icon: Newspaper,
+    label: 'Posts',
+    to: '/posts'
+  },
+  {
     label: 'Profile',
     to: '/profile',
     icon: User
@@ -38,19 +58,19 @@ export const tutorLinks = [
     icon: PieChart
   },
   {
-    label: 'Lessons',
-    icon: BookCheck,
-    to: '/lessons'
-  },
-  {
-    label: 'Students',
-    icon: UsersRound,
-    to: '/students'
-  },
-  {
     icon: MessageCircle,
     label: 'Messages',
     to: '/messages'
+  },
+  {
+    icon: CalendarDays,
+    label: 'Schedule',
+    to: '/schedule'
+  },
+  {
+    icon: Newspaper,
+    label: 'Posts',
+    to: '/posts'
   },
   {
     label: 'Profile',

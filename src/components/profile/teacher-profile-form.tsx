@@ -10,11 +10,12 @@ import {
 } from '@/components/ui/form'
 import { PopoverContent, PopoverTrigger, Popover } from '@/components/ui/popover'
 import { CardContent, CardHeader, CardTitle, Card } from '@/components/ui/card'
+import { teacherProfileSchema, TeacherProfile } from '@/models/profile/profile'
 import MultipleSelector from '@/components/ui/multiple-selector'
 import { SuccessAlert } from '@/components/ui/success-alert'
 import { TeacherType, UserType } from '@/models/users/user'
-import { TeacherProfile } from '@/models/profile/profile'
 import { ErrorAlert } from '@/components/ui/error-alert'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { Textarea } from '@/components/ui/textarea'
 import { Calendar } from '@/components/ui/calendar'
 import { editProfile } from '@/lib/profile/actions'
@@ -58,7 +59,8 @@ export function TeacherProfileForm({ teacher }: Props) {
       surname: teacher?.surname,
       email: teacher?.email,
       name: teacher?.name
-    }
+    },
+    resolver: zodResolver(teacherProfileSchema)
   })
 
   const onSubmit = async (values: TeacherProfile) => {

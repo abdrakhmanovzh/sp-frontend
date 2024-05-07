@@ -4,13 +4,19 @@ import { cookies } from 'next/headers'
 export default async function middleware(req: NextRequest) {
   const token = cookies().get('token')
 
-  if ((req.nextUrl.pathname === '/login' || req.nextUrl.pathname === '/register') && token?.value) {
+  if (
+    (req.nextUrl.pathname === '/login' ||
+      req.nextUrl.pathname === '/register/student' ||
+      req.nextUrl.pathname === '/register/teacher') &&
+    token?.value
+  ) {
     return NextResponse.redirect(new URL('/dashboard', req.url))
   }
 
   if (
     req.nextUrl.pathname !== '/login' &&
-    req.nextUrl.pathname !== '/register' &&
+    req.nextUrl.pathname !== '/register/student' &&
+    req.nextUrl.pathname !== '/register/teacher' &&
     req.nextUrl.pathname !== '/' &&
     !token?.value
   ) {

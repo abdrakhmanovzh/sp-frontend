@@ -1,3 +1,5 @@
 tailwind.config.ts
 src/components/ui/*.tsx
+src/components/ui/*.ts
 src/models/**/*.ts
+

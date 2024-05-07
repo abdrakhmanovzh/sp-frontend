@@ -10,9 +10,10 @@ import {
 } from '@/components/ui/form'
 import { PopoverContent, PopoverTrigger, Popover } from '@/components/ui/popover'
 import { CardContent, CardHeader, CardTitle, Card } from '@/components/ui/card'
+import { studentProfileSchema, StudentProfile } from '@/models/profile/profile'
 import { SuccessAlert } from '@/components/ui/success-alert'
-import { StudentProfile } from '@/models/profile/profile'
 import { ErrorAlert } from '@/components/ui/error-alert'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { Calendar } from '@/components/ui/calendar'
 import { editProfile } from '@/lib/profile/actions'
 import { StudentType } from '@/models/users/user'
@@ -36,7 +37,8 @@ export function StudentProfileForm({ student }: Props) {
       surname: student?.surname,
       email: student?.email,
       name: student?.name
-    }
+    },
+    resolver: zodResolver(studentProfileSchema)
   })
 
   const onSubmit = async (values: StudentProfile) => {

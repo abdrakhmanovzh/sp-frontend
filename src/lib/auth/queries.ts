@@ -1,4 +1,4 @@
-import { studentEndpoint, teacherEndpoint } from '@/lib/core/constants'
+import { subjectsEndpoint, studentEndpoint, teacherEndpoint } from '@/lib/core/constants'
 import { UserType } from '@/models/users/user'
 import { cookies } from 'next/headers'
 
@@ -29,4 +29,37 @@ export async function getUser() {
   } catch (error) {
     return null
   }
+}
+
+export async function getAllSubjects() {
+  const response = await fetch(`${subjectsEndpoint}`, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'GET'
+  })
+
+  return await response.json()
+}
+
+export async function getStudentLessons(id: number | undefined) {
+  const response = await fetch(`${studentEndpoint}/${id}/lessons`, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'GET'
+  })
+
+  return await response.json()
+}
+
+export async function getTeacherLessons(id: number | undefined) {
+  const response = await fetch(`${teacherEndpoint}/${id}/lessons`, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'GET'
+  })
+
+  return await response.json()
 }
